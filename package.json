@@ -1,0 +1,45 @@
+{
+  "name": "react-use-cache",
+  "version": "1.0.1",
+  "description": "React use cache is local cache manager to avoid repeat requesting data from server",
+  "keywords": [
+    "React",
+    "hook",
+    "cache"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf dist && NODE_ENV=production webpack",
+    "build:dev": "rimraf dist && webpack "
+  },
+  "author": {
+    "name": "Ricky Jiao",
+    "email": "ricky.jiao86@gmail.com"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RickyJiao/react-use-data.git"
+  },
+  "peerDependencies": {
+    "react": "16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.9.0",
+    "@babel/preset-env": "7.9.5",
+    "@babel/preset-react": "7.9.4",
+    "@types/react": "16.9.35",
+    "awesome-typescript-loader": "5.2.1",
+    "babel-loader": "8.1.0",
+    "react": "16.13.1",
+    "typescript": "3.8.3",
+    "webpack": "4.29.6",
+    "webpack-cli": "^3.3.11"
+  }
+}
