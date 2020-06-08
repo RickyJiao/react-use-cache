@@ -3,8 +3,7 @@
 React use cache is an local cache manager to cache response data in memory. It will automatically return previous cached one when requesting the same data from serve to:
 
 - improve performance
-- avoid multiple request to server
-- reduce server pressure
+- avoid multiple same requests to server to reduce server pressure
 
 ## Installation
 
