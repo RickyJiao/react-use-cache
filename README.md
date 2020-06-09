@@ -1,4 +1,4 @@
-# react-use-data
+# react-use-cache
 
 React use cache is an local cache manager to cache response data in memory. It will automatically return previous cached one when requesting the same data from serve to:
 
