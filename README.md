@@ -22,9 +22,25 @@ $ yarn add react-use-cache
 ## Example
 
 ### useCache
-React hook for cache promises fulfill value. Use with `fetch` or `axiso` together to avoid multiple same request to server. Here is an example to cache blog detail object.
+
+React hook for cache promises fulfilled value. Use with `fetch` or `axiso` together to avoid multiple same request to server. Here is an example to cache blog detail object.
 
 Once a new comment is created, we are able to use `updateCache` to update the cached object.
+
+Here is the hook interface
+```jsx
+  type DataGenerator<T> = () => PromiseLike<T> | null;
+
+  type UseCacheResponse<T> = {
+    isFetching: boolean;
+    data: T | undefined;
+    updateCache: (nextData: T) => void;
+    removeCache: () => void;
+  }
+
+  function useCache<T>(getData: DataGenerator<T>, dataKey: DataKey): UseCacheResponse<T>
+```
+Note: `getData` should return a **PromiseLike** object. It will be invoked only `dataKey` is changed.
 
 ```jsx
 // Blog.tsx
