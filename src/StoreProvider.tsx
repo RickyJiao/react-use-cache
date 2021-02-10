@@ -58,7 +58,7 @@ export function StoreProvider<T extends IStores>({
 
     prev[cur] = (...args: ArgsType) => {
       const cacheKey = [cur, ...args].join('_');
-      const cacheObject = useCache(() => getData(), cacheKey);
+      const cacheObject = useCache(() => getData(...args), cacheKey);
 
       useEffect(() => {
         updateRemoveCacheCallback(cacheKey, cacheObject.removeCache);
