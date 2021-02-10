@@ -1,5 +1,5 @@
 import React, {
-  useContext, createContext, useState, useEffect,
+  useContext, createContext, useState, useEffect, ReactNode,
 } from 'react';
 import { useCache, UseCacheResponse } from './useCache';
 
@@ -25,10 +25,15 @@ export function useStore<T extends IStores>() {
   return useContext<IStoreContext<T>>(StoreContext as unknown as React.Context<IStoreContext<T>>);
 }
 
+interface StoreProvider<T> {
+  store: T;
+  children?: ReactNode;
+}
+
 export function StoreProvider<T extends IStores>({
-  value,
+  store,
   children,
-}: React.ProviderProps<T>) {
+}: StoreProvider<T>) {
   const [removeCacheCallback, setRemoveCacheCallback] = useState<Record<string, RemoveCacheFn>>({});
 
   function removeCache(cacheKey: string) {
@@ -52,8 +57,8 @@ export function StoreProvider<T extends IStores>({
     setRemoveCacheCallback(nextRemoveCacheCallback);
   }
 
-  const nextValue: IStoreContext<T> = Object.keys(value).reduce((prev, cur) => {
-    const getData = value[cur];
+  const nextValue: IStoreContext<T> = Object.keys(store).reduce((prev, cur) => {
+    const getData = store[cur];
     type ArgsType = Parameters<typeof getData>;
 
     prev[cur] = (...args: ArgsType) => {
