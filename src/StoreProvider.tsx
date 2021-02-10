@@ -27,7 +27,7 @@ export function useStore<T extends IStores>() {
 
 export function StoreProvider<T extends IStores>({
   value,
-  ...rest
+  children,
 }: React.ProviderProps<T>) {
   const [removeCacheCallback, setRemoveCacheCallback] = useState<Record<string, RemoveCacheFn>>({});
 
@@ -66,6 +66,8 @@ export function StoreProvider<T extends IStores>({
 
       return cacheObject;
     };
+
+    return prev;
   }, {
     clearCache(...args: any[]) {
       const cacheKey = [...args].join('_');
@@ -75,5 +77,9 @@ export function StoreProvider<T extends IStores>({
 
   const MyStoreContext: React.Context<IStoreContext<T>> = StoreContext as unknown as React.Context<IStoreContext<T>>;
 
-  return <MyStoreContext.Provider {...rest} value={nextValue} />;
+  return (
+    <MyStoreContext.Provider value={nextValue}>
+      {children}
+    </MyStoreContext.Provider>
+  );
 }
