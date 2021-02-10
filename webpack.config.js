@@ -6,6 +6,8 @@ const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   mode: isProd ? 'production' : 'development',
+  
+  devtool: isProd ? 'none' : 'devtool',
 
   entry: {
     app: './src/index.ts'
