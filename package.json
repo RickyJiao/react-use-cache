@@ -1,6 +1,6 @@
 {
   "name": "react-use-cache",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "React use cache is local cache manager to avoid repeat requesting data from server",
   "keywords": [
     "React",
