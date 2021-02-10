@@ -3,17 +3,17 @@ import React, {
 } from 'react';
 import { useCache, UseCacheResponse } from './useCache';
 
-type Stores = Record<string, (...args: any[]) => Promise<any>>;
+export type IStores = Record<string, (...args: any[]) => Promise<any>>;
 
 type PromiseInnerType<T extends Promise<any>> = T extends Promise<infer P> ? P : never
 
-type Transform<T extends Stores> = {
-  [P in keyof T]: UseCacheResponse<PromiseInnerType<ReturnType<T[P]>>>
+type Transform<T extends IStores> = {
+  [P in keyof T]: (...args: Parameters<T[P]>) => UseCacheResponse<PromiseInnerType<ReturnType<T[P]>>>
 }
 
 type RemoveCacheFn = () => void;
 
-type IStoreContext<T extends Stores> = Transform<T> & {
+type IStoreContext<T extends IStores> = Transform<T> & {
   clearCache(...args: any[]): void;
 }
 
@@ -21,11 +21,11 @@ export const CacheJoint = '_';
 
 export const StoreContext = createContext({});
 
-export function useStore<T extends Stores>() {
+export function useStore<T extends IStores>() {
   return useContext<IStoreContext<T>>(StoreContext as unknown as React.Context<IStoreContext<T>>);
 }
 
-export function StoreProvider<T extends Stores>({
+export function StoreProvider<T extends IStores>({
   value,
   ...rest
 }: React.ProviderProps<T>) {
