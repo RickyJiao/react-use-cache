@@ -42,6 +42,12 @@ export function StoreProvider<T extends IStores>({
     if (fnRemoveCache) {
       fnRemoveCache();
     }
+
+    const nextRemoveCacheCallback = {
+      ...removeCacheCallback,
+    };
+    delete nextRemoveCacheCallback[cacheKey];
+    setRemoveCacheCallback(nextRemoveCacheCallback);
   }
 
   function updateRemoveCacheCallback(cacheKey: string, nextRemoveCache: RemoveCacheFn) {

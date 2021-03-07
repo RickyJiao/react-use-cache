@@ -33,7 +33,8 @@ export function useCache<T>(getData: DataGenerator<T>, dataKey: DataKey): UseCac
   }, [key]);
 
   const removeCache = useCallback(() => {
-    delete CACHES[key]
+    delete CACHES[key];
+    setCount(Date.now());
   }, [key]);
 
   const retrieveData = useCallback(() => {
