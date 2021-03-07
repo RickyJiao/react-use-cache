@@ -1,6 +1,6 @@
 # react-use-cache
 
-React use cache is an local cache manager to cache response data in memory. It will automatically return previous cached one when requesting the same data from serve to:
+React use cache is an local cache manager to cache response data in memory. It will automatically return previous cached one when requesting the same data from server to:
 
 - improve performance
 - avoid multiple same requests to server to reduce server pressure
@@ -23,7 +23,7 @@ $ yarn add react-use-cache
 
 ### useCache
 
-React hook for cache promises fulfilled value. Use with `fetch` or `axiso` together to avoid multiple same request to server. Here is an example to cache blog detail object.
+React hook for cache promises fulfilled value. Use with `fetch` or `axios` together to avoid multiple same request to server. Here is an example to cache blog detail object.
 
 Once a new comment is created, we are able to use `updateCache` to update the cached object.
 
