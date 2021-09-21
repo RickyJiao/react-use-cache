@@ -23,7 +23,7 @@ $ yarn add react-use-cache
 
 ### useCache
 
-React hook for cache promises fulfilled value. Use with `fetch` or `axiso` together to avoid multiple same request to server. Here is an example to cache blog detail object.
+React hook for cache promises fulfilled value. Use with `fetch` or `axios` together to avoid multiple same request to server. Here is an example to cache blog detail object.
 
 Once a new comment is created, we are able to use `updateCache` to update the cached object.
 
